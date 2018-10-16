@@ -1,0 +1,53 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+
+<div class="page-header" style="font-family: 'Trebuchet MS', Helvetica, sans-serif">
+  <h1>Ingrédients.Québec<small>&nbsp;| Brassins d'ici!</small></h1>
+</div>
+
+<div class="well well-lg" style="width: 80%; margin: auto">
+
+    <div class="row">
+        <a href="http://192.168.1.144:5000/malteries">
+         <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="/static/components/malt.png" alt="Malteries" >
+                <div class="caption">
+                    <h3>Malteries</h3>
+                    <p>Les différentes malteries du Québec</p>
+                </div>
+            </div>
+        </div>
+        </a>
+        <a href="http://192.168.1.144:5000/houblonnieres">
+         <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="/static/components/hops.png" alt="Houblonnières" >
+                <div class="caption">
+                    <h3>Houblonnières</h3>
+                    <p>Les différentes houblonnières du Québec</p>
+                </div>
+            </div>
+        </div>
+        </a>
+        <a href="http://192.168.1.144:5000/levuriers">
+         <div class="col-sm-6 col-md-4">
+            <div class="thumbnail">
+                <img src="/static/components/yeast.png" alt="Levuriers" >
+                <div class="caption">
+                    <h3>Levuriers</h3>
+                    <p>Les différentes producteurs de Levure du Québec</p>
+                </div>
+            </div>
+        </div>
+        </a>
+    </div>
+
+
+</div>
+
+<div class="well well-sm" style="width: 80%; margin: auto">
+    <p align="center"><a href="mailto:ipnextgen@gmail.com">Contact</a> | À propos d'ingrédients.quebec | Code source</p>
+</div>
+{% endblock %}
