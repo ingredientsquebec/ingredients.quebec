@@ -9,6 +9,8 @@ de brassage produits au Québec.
 (En deuxième phase) Permettre aux consommateurs d'identifier
 les différents producteurs utilisé dans un brassin.
 
+Sans but lucratif. Développement ouvert à tous!
+
 À Faire
 -------
 
