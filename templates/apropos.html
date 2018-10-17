@@ -1,0 +1,39 @@
+{% extends "bootstrap/base.html" %}
+
+{% block content %}
+
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="http://ingredients.quebec:5000/houblonnieres">
+        <img alt="Houblons"  height="35" src="/static/components/t_hops.png">
+      </a>
+      <a class="navbar-brand" href="http://ingredients.quebec:5000/malteries">
+        <img alt="Malts"  height="35" src="/static/components/t_malt.png">
+      </a>
+      <a class="navbar-brand" href="http://ingredients.quebec:5000/levuriers">
+        <img alt="Levures" height="35" src="/static/components/t_yeast.png">
+      </a>
+    </div>
+  </div>
+</nav>
+
+<div class="page-header">
+  <h1>Ingrédients Québec<small>&nbsp;&nbsp;- Levuriers</small></h1>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">À propos d'ingredients.quebec</h3>
+  </div>
+  <div class="panel-body">
+    Permettre de connaitres les différents ingrédients de brassage produits au Québec. (En deuxième phase) Permettre aux consommateurs d'identifier les différents producteurs utilisés dans un brassin. Sans but lucratif. Développement ouvert à tous!
+  </div>
+</div>
+
+<div class="well well-sm" style="width: 80%; margin: auto">
+  <p align="center"><a href="mailto:infos@ingredients.quebec">Contact</a> | <a href="http://ingredients.quebec:5000/aprospos" target="_blank"><a href="http://ingredients.quebec:5000/aprospos" target="_blank">À propos d'ingrédients.quebec</a></a> | <a href="https://github.com/ingredientsquebec/ingredients.quebec" target="_blank">Code source</a></p>
+</div>
+
+
+{% endblock %}
