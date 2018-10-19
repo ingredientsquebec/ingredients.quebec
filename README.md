@@ -20,6 +20,12 @@ Sans but lucratif. Développement ouvert à tous!
 * Page pour generer un code QR avec le choix de divers
 producteurs
 * Page d'atterissage pour lors de la lecture de code QR
+* Améliorer les icones
+
+Idées
+-----
+* Liste des LHBS
+
 
 Technologies
 ------------

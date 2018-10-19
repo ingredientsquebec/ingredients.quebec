@@ -17,6 +17,10 @@ Bootstrap(app)
 def index():
     return render_template('index.html')
 
+@app.route('/apropos')
+def apropos():
+    return render_template('apropos.html')
+
 @app.route('/malteries')
 def malteries():
     result_malteries = db.malteries.find()
