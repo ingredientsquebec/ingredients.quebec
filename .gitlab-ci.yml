@@ -4,17 +4,44 @@ stages:
   - prod
 
 before_script:
-## SSH Prep
-  - mkdir -p ~/.ssh
-  - chmod 700 ~/.ssh
-  - echo "$IQKEYSCAN" > ~/.ssh/known_hosts
-  - chmod 644 ~/.ssh/known_hosts
+### SSH Prep
+#  - mkdir -p ~/.ssh
+#  - chmod 700 ~/.ssh
+#  - echo "$IQKEYSCAN" > ~/.ssh/known_hosts
+#  - chmod 644 ~/.ssh/known_hosts
+#  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+#  - eval $(ssh-agent -s)
+#  - echo -n "$IQSSHKEYGIT" > iq.creds
+##  - tr -d '\r' > iq.creds
+#  - chmod 400 iq.creds
+#  - cat iq.creds
+before_script:
+  # cfr. https://docs.gitlab.com/ee/ci/ssh_keys/README.html
+  # Install ssh-agent if not already installed, it is required by Docker.
+  # (change apt-get to yum if you use a CentOS-based image)
   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+
+  # Run ssh-agent (inside the build environment)
   - eval $(ssh-agent -s)
-  - echo -n "$IQSSHKEYGIT" > iq.creds
-#  - tr -d '\r' > iq.creds
-  - chmod 400 iq.creds
-  - cat iq.creds
+
+  # Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+
+  # For Docker builds disable host key checking. Be aware that by adding that
+  # you are suspectible to man-in-the-middle attacks.
+  # WARNING: Use this only with the Docker executor, if you use it with shell
+  # you will overwrite your user's SSH config.
+  #- mkdir -p ~/.ssh
+  #- '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  # In order to properly check the server's host key, assuming you created the
+  # SSH_SERVER_HOSTKEYS variable previously, uncomment the following two lines
+  # instead.
+  - mkdir -p /root/.ssh
+  - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > /root/.ssh/known_hosts'
+  - echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
+  - chmod 600 /root/.ssh/id_rsa && chmod 700 /root/.ssh
+
+
 
 
 ###
@@ -31,7 +58,7 @@ before_script:
 preprod5000:
   stage: staging
   script:
-    - scp -o StrictHostKeyChecking=no -i iq.creds -r * ubuntu@ingredients.quebec:~
+    - scp -v -o StrictHostKeyChecking=no  -r * ubuntu@ingredients.quebec:~
 #  when: on_success
   tags:
     - linux
