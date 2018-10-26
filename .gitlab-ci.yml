@@ -28,9 +28,9 @@ before_script:
 preprod5000:
   stage: staging
   script:
-    - echo -n "$IQSSHKEY" > iq.creds
+    - echo -n $IQSSHKEY > iq.creds
     - chmod 0400 iq.creds
-    - scp -o StrictHostKeyChecking=no -r -i iq.creds * ubuntu@ingredients.quebec:/tmp
+    - sudo scp -o StrictHostKeyChecking=no -r -i iq.creds * ubuntu@ingredients.quebec:/tmp
 #  when: on_success
   tags:
     - linux
