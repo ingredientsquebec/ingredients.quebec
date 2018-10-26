@@ -30,7 +30,7 @@ preprod5000:
   script:
     - echo -n $IQSSHKEY > iq.creds
     - chmod 0400 iq.creds
-    - sudo scp -o StrictHostKeyChecking=no -r -i iq.creds * ubuntu@ingredients.quebec:/tmp
+    - sudo -vvv scp -o StrictHostKeyChecking=no -r -i iq.creds * ubuntu@ingredients.quebec:/tmp
 #  when: on_success
   tags:
     - linux
