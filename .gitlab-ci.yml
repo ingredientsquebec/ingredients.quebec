@@ -12,6 +12,7 @@ before_script:
   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
   - eval $(ssh-agent -s)
   - echo "$IQSSHKEY" | tr -d '\r' > iq.creds
+  - chmod 0400 iq.creds
 
 
 ###
@@ -28,8 +29,6 @@ before_script:
 preprod5000:
   stage: staging
   script:
-    - echo -n $IQSSHKEY > iq.creds
-    - chmod 0400 iq.creds
     - scp  -vvv -o StrictHostKeyChecking=no -i iq.creds -r * ubuntu@ingredients.quebec:/tmp
 #  when: on_success
   tags:
