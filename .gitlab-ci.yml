@@ -4,7 +4,7 @@ stages:
   - prod
 
 before_script:
-# SSH Prep
+## SSH Prep
   - mkdir -p ~/.ssh
   - chmod 700 ~/.ssh
   - echo "$IQKEYSCAN" > ~/.ssh/known_hosts
@@ -29,7 +29,7 @@ before_script:
 preprod5000:
   stage: staging
   script:
-    - scp  -vvv -o StrictHostKeyChecking=no -i iq.creds -r * ubuntu@ingredients.quebec:~
+    - scp -o StrictHostKeyChecking=no -i iq.creds -r * ubuntu@ingredients.quebec:~
 #  when: on_success
   tags:
     - linux
