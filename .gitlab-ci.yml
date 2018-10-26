@@ -11,7 +11,7 @@ before_script:
   - chmod 644 ~/.ssh/known_hosts
   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
   - eval $(ssh-agent -s)
-  - echo "$IQSSHKEY" | tr -d '\r' > iq.creds
+  - echo -n "$IQSSHKEYGIT" | tr -d '\r' > iq.creds
   - chmod 0400 iq.creds
 
 
