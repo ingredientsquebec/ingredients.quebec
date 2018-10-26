@@ -9,9 +9,9 @@ before_script:
   - chmod 700 ~/.ssh
   - echo "$IQKEYSCAN" > ~/.ssh/known_hosts
   - chmod 644 ~/.ssh/known_hosts
-  #- 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
-  #- eval $(ssh-agent -s)
-  #- echo "$IQSSHKEY" | tr -d '\r' | ssh-add - > /dev/null
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - echo "$IQSSHKEY" | tr -d '\r' | ssh-add - > /dev/null
 
 
 ###
@@ -30,7 +30,7 @@ preprod5000:
   script:
     - echo -n $IQSSHKEY > iq.creds
     - chmod 0400 iq.creds
-    - scp  -vvv -o StrictHostKeyChecking=no -r -i iq.creds * ubuntu@ingredients.quebec:/tmp
+    - scp  -vvv -o StrictHostKeyChecking=no -r * ubuntu@ingredients.quebec:/tmp
 #  when: on_success
   tags:
     - linux
