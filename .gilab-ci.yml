@@ -1,0 +1,33 @@
+stages:
+  - test
+  - staging
+  - prod
+
+###
+# Run tests.
+###
+test:
+  stage: test
+  script:
+    - tox -e py36
+  tags:
+    - py36
+
+
+preprod5000:
+  stage: staging
+  script:
+    - scp dans sous dir
+    - part flask en background
+  when: on_success
+  tags:
+    - py36
+
+prod:
+  stage: prod
+  script:
+    - ssh in the box and git pull
+    - restart gunicorn
+  when: manual
+  tags:
+    - py36
