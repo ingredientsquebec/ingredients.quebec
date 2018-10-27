@@ -30,7 +30,7 @@ preprod5000:
   stage: staging
   script:
     - scp -o StrictHostKeyChecking=no  -r * ubuntu@ingredients.quebec:~/preprod/
-  when: manual
+  when: on_success
   tags:
     - linux
 
