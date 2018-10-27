@@ -11,16 +11,14 @@
 
 <div class="media">
   <div class="media-left">
-    <a href="{{ houblonniere['URL'] }}" target="_blank">
-      <img class="media-object" width="64" src="/static/img/{{ houblonniere['logo'] }}" >
+    <a href="{{ houblonniere.URL }}" target="_blank">
+      <img class="media-object" width="64" src="/static/img/{{ houblonniere.logo }}" >
     </a>
   </div>
   <div class="media-body">
-    <h4 class="media-heading">{{ houblonniere['name'] }}</h4>
-      {{ houblonniere['description'] }}
+    <h4 class="media-heading">{{ houblonniere.name }}</h4>
+      {{ houblonniere.description }}
   </div>
-
-
 </div>
 
 {% endfor %}
