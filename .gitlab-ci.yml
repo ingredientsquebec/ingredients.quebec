@@ -1,0 +1,44 @@
+stages:
+  - test
+  - staging
+#  - prod
+
+before_script:
+  # cfr. https://docs.gitlab.com/ee/ci/ssh_keys/README.html
+  - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - mkdir -p /root/.ssh
+  - '[[ -f /.dockerenv ]] && echo "$SSH_SERVER_HOSTKEYS" > /root/.ssh/known_hosts'
+  - echo "$SSH_PRIVATE_KEY" > /root/.ssh/id_rsa
+  - chmod 600 /root/.ssh/id_rsa && chmod 700 /root/.ssh
+
+###
+# Run tests.
+###
+pyflakes_test:
+  stage: test
+  image: python:latest
+  script:
+    - pip install pyflakes
+    - pyflakes website.py
+  tags:
+    - linux
+
+
+preprod5000:
+  stage: staging
+  script:
+    - scp -o StrictHostKeyChecking=no  -r * ubuntu@ingredients.quebec:~/preprod/
+  when: on_success
+  tags:
+    - linux
+
+#prod:
+#  stage: prod
+#  script:
+#    - ssh in the box and git pull
+#    - restart gunicorn
+#  when: manual
+#  tags:
+#    - linux

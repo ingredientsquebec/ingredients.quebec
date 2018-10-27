@@ -1,4 +1,4 @@
 flask
 flask-bootstrap
 pymongo
-gnunicorn
+gunicorn
