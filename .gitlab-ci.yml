@@ -16,7 +16,7 @@ before_script:
 ###
 # Run tests.
 ###
-test:
+test_pyflakes:
   stage: test
   script:
     - pip install pyflakes
