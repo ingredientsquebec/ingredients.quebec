@@ -1,5 +1,5 @@
 stages:
-#  - test
+   - test
   - staging
 #  - prod
 
@@ -16,12 +16,13 @@ before_script:
 ###
 # Run tests.
 ###
-#test:
-#  stage: test
-#  script:
-#    - tox -e py36
-#  tags:
-#    - linux
+test:
+  stage: test
+  script:
+    - pip install pyflakes
+    - pyflakes website.py
+  tags:
+    - linux
 
 
 preprod5000:
