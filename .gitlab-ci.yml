@@ -29,7 +29,7 @@ pyflakes_test:
 preprod5000:
   stage: staging
   script:
-    - sed -i 's/Brassins/<b>PREPROD $CI_COMMIT_REF_SLUG - Brassins</b>/g' templates/index.html
+    - sed -i 's/Brassins/<b>PREPROD $CI_COMMIT_REF_SLUG - Brassins<\/b>/g' templates/index.html
     - scp -o StrictHostKeyChecking=no  -r * ubuntu@ingredients.quebec:~/preprod/
   when: on_success
   tags:
