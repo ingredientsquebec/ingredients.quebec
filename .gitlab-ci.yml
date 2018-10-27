@@ -1,5 +1,5 @@
 stages:
-   - test
+  - test
   - staging
 #  - prod
 
@@ -16,7 +16,7 @@ before_script:
 ###
 # Run tests.
 ###
-test_pyflakes:
+pyflakes_test:
   stage: test
   script:
     - pip install pyflakes
