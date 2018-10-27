@@ -1,11 +1,19 @@
+import pymodm
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
-from pymongo import MongoClient
+
+import models
 
 
-# connect to MongoDB, change the << MONGODB URL >> to reflect your own connection string
-client = MongoClient(port=27017)
-db = client.iq
+def connect_to_mongodb():
+    """
+    Connects to the database using pymodm
+    """
+    # TODO The connection string must be imported from somewhere
+    # TODO We can use an ini file or environment variables.
+    connection_uri = "mongodb://localhost:27017/ingredientsquebec"
+    pymodm.connect(connection_uri, alias="default")
+
 
 # Flask Settings
 application = Flask(__name__)
@@ -24,21 +32,22 @@ def apropos():
 
 @application.route('/malteries')
 def malteries():
-    result_malteries = db.malteries.find()
+    result_malteries = models.Malterie.objects.all()
     return render_template('malteries.html', malteries=result_malteries)
 
 
 @application.route('/houblonnieres')
 def houblonnieres():
-    result_houblonnieres = db.houblonnieres.find()
+    result_houblonnieres = models.Houblonniere.objects.all()
     return render_template('houblonnieres.html', houblonnieres=result_houblonnieres)
 
 
 @application.route('/levuriers')
 def levuriers():
-    result_levuriers = db.levuriers.find()
+    result_levuriers = models.Levurier.objects.all()
     return render_template('levuriers.html', levuriers=result_levuriers)
 
 
 if __name__ == '__main__':
+    connect_to_mongodb()
     application.run(debug=False, host='0.0.0.0')

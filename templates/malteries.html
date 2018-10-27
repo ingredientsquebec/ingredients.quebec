@@ -10,16 +10,14 @@
 
 <div class="media">
   <div class="media-left">
-    <a href="{{ malterie['URL'] }}" target="_blank">
-      <img class="media-object" width="64" src="/static/img/{{ malterie['logo'] }}" >
+    <a href="{{ malterie.URL }}" target="_blank">
+      <img class="media-object" width="64" src="/static/img/{{ malterie.logo }}" >
     </a>
   </div>
   <div class="media-body">
-    <h4 class="media-heading">{{ malterie['name'] }}</h4>
-      {{ malterie['description'] }}
+    <h4 class="media-heading">{{ malterie.name }}</h4>
+      {{ malterie.description }}
   </div>
-
-
 </div>
 
 {% endfor %}
