@@ -11,7 +11,7 @@ def connect_to_mongodb():
     """
     # TODO The connection string must be imported from somewhere
     # TODO We can use an ini file or environment variables.
-    connection_uri = "mongodb://localhost:27017/iq"
+    connection_uri = "mongodb://localhost:27017/"
     pymodm.connect(connection_uri, alias="default")
 
 
