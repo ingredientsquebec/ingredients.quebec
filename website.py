@@ -35,7 +35,8 @@ def mail_form(submit_values, logo):
         msg['From'] = "infos@ingredients.quebec"
         msg['To'] = "infos@ingredients.quebec"
         content = MIMEText("Nom: " + submit_values['name'] + "\n\r" + "Description: " + submit_values['description']
-                           + "URL: " + submit_values['URL'] + "\n\r" + "Code Postal: " + submit_values['code_postal'])
+                           + "\n\r" + "URL: " + submit_values['URL'] + "\n\r" + "Code Postal: "
+                           + submit_values['code_postal'])
         f = logo.stream.read()
         f = MIMEImage(f)
         msg.attach(content)
