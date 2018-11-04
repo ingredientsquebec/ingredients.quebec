@@ -5,7 +5,7 @@ from pymongo import MongoClient
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField
 from wtforms import StringField
-from wtforms.validators import DataRequired, Length, URL
+from wtforms.validators import DataRequired
 from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
