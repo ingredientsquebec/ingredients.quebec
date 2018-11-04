@@ -43,7 +43,8 @@ def mail_form(submit_values, logo):
         msg.attach(f)
     else:
         msg = MIMEText("Nom: " + submit_values['name'] + "\n\r" + "Description: " + submit_values['description']
-                        + "URL: " + submit_values['URL'] + "\n\r" + "Code Postal: " + submit_values['code_postal'])
+                       + "\n\r" + "URL: " + submit_values['URL'] + "\n\r" + "Code Postal: "
+                       + submit_values['code_postal'])
         msg['Subject'] = 'Nouveau détaillant'
         msg['From'] = "infos@ingredients.quebec"
         msg['To'] = "infos@ingredients.quebec"
