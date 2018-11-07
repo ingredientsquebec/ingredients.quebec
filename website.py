@@ -18,7 +18,7 @@ db = client.iq
 # Flask Settings
 application = Flask(__name__)
 Bootstrap(application)
-application.config['SECRET_KEY'] = 'brassins_d_ici'
+application.config['SECRET_KEY'] = 'change_me_in_prod'
 
 # Formulaires
 class MyForm(FlaskForm):
@@ -82,12 +82,17 @@ def levuriers():
     result_levuriers = db.levuriers.find()
     return render_template('levuriers.html', levuriers=result_levuriers)
 
+@application.route('/detaillants')
+def detaillants():
+    result_detaillants = db.detaillants.find()
+    return render_template('detaillants.html', detaillants=result_detaillants)
 
 @application.route('/ajout_detaillant', methods=['GET', 'POST'])
 def ajout_detaillant():
     form = MyForm()
     if form.validate_on_submit():
         mail_form(form.data, form.logo.data)
+        return render_template('ajout_detaillant_succes.html')
     else:
         print("ERROR: form not complete")
     return render_template('ajout_detaillant.html', form=form)

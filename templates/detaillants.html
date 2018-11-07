@@ -17,14 +17,16 @@
   </div>
   <div class="media-body">
     <h4 class="media-heading">{{ detaillant['name'] }}</h4>
-      {{ detaillant['description'] }}
+      {{ detaillant['description'] }}<br>
+      {{ detaillant['zipcode'] }}
   </div>
 
 
 </div>
 
 {% endfor %}
-
+<br>
+ <p align="center"><a class="btn btn-primary" href="{{ url_for('ajout_detaillant') }}" role="button">Soumettre un détaillant</a></p>
 
 <div class="well well-sm" style="width: 80%; margin: auto">
   <p align="center"><a href="mailto:infos@ingredients.quebec">Contact</a> | <a href="{{ url_for('apropos') }}">À propos d'ingrédients.quebec</a> | <a href="https://github.com/ingredientsquebec/ingredients.quebec" target="_blank">Code source</a></p>
