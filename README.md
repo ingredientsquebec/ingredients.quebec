@@ -37,4 +37,6 @@ Bootstrap
 
 MongoDB
 
-Gnunicorn
+Gunicorn
+
+WTForms
