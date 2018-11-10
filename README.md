@@ -21,10 +21,11 @@ Sans but lucratif. Développement ouvert à tous!
 producteurs
 * Page d'atterissage pour lors de la lecture de code QR
 * Améliorer les icones
+* ~~Liste des LHBS~~
 
 Idées
 -----
-* Liste des LHBS
+
 
 
 Technologies
