@@ -3,6 +3,7 @@ from email.mime.text import MIMEText
 from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 
+
 def mail_form_detaillant(submit_values, logo):
     if logo:
         msg = MIMEMultipart('related')
@@ -12,8 +13,7 @@ def mail_form_detaillant(submit_values, logo):
         content = MIMEText("Nom: " + submit_values['name'] + "\n\r" + "Description: " + submit_values['description']
                            + "\n\r" + "URL: " + submit_values['URL'] + "\n\r" + "Code Postal: "
                            + submit_values['code_postal'])
-        with logo.stream.read() as file_stream:
-            image_file = MIMEImage(file_stream)
+        image_file = MIMEImage(logo.stream.read())
         msg.attach(content)
         msg.attach(image_file)
     else:
