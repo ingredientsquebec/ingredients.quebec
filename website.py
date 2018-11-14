@@ -1,6 +1,9 @@
 import pymodm
 from flask import Flask, render_template
 from flask_bootstrap import Bootstrap
+from pymongo import MongoClient
+from mail_form_detaillant import mail_form_detaillant
+from iqforms import DetaillantForm
 
 import models
 
@@ -18,6 +21,7 @@ def connect_to_mongodb():
 # Flask Settings
 application = Flask(__name__)
 Bootstrap(application)
+application.config['SECRET_KEY'] = 'change_me_in_prod'
 
 
 @application.route('/')
@@ -46,6 +50,23 @@ def houblonnieres():
 def levuriers():
     result_levuriers = models.Levurier.objects.all()
     return render_template('levuriers.html', levuriers=result_levuriers)
+
+
+@application.route('/detaillants')
+def detaillants():
+    result_detaillants = db.detaillants.find()
+    return render_template('detaillants.html', detaillants=result_detaillants)
+
+
+@application.route('/ajout_detaillant', methods=['GET', 'POST'])
+def ajout_detaillant():
+    form = DetaillantForm()
+    if form.validate_on_submit():
+        mail_form_detaillant(form.data, form.logo.data)
+        return render_template('ajout_detaillant_succes.html')
+    else:
+        print("ERROR: form not complete")
+    return render_template('ajout_detaillant.html', form=form)
 
 
 if __name__ == '__main__':
