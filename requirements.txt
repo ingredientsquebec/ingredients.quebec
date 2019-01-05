@@ -2,3 +2,5 @@ flask
 flask-bootstrap
 pymongo
 gunicorn
+flask_wtf
+wtforms

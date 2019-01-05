@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="page-header">
+  <h1>Ingrédients Québec<small>&nbsp;&nbsp</small></h1>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Soumettre un détaillant</h3>
+  </div>
+  <div class="panel-body">
+      <form method="POST" action="/ajout_detaillant" enctype="multipart/form-data">
+          {{ form.csrf_token }}
+         <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">
+            Nom du détaillant
+          </span>
+          {{ form.name(class_="form-control",size=5) }}
+         </div><br>
+         <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">
+            Description
+          </span>
+          {{ form.description(class_="form-control",size=5) }}
+         </div><br>
+        <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">
+            Site Web
+          </span>
+          {{ form.URL(class_="form-control",size=5) }}
+         </div><br>
+         <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">
+            Code Postal
+          </span>
+          {{ form.code_postal(class_="form-control",size=5) }}
+        </div><br>
+          <div class="input-group">
+          <span class="input-group-addon" id="basic-addon1">
+            Logo ( .jpg ou .png ) Max: 2 Mg
+          </span>
+          {{ form.logo(class_="form-control") }}
+        </div><br>
+        <span class="input-group-btn">
+           <button class="btn btn-default" type="submit">Soumettre!</button>
+        </span>
+      </form>
+  </div>
+</div>
+
+<div class="well well-sm" style="width: 80%; margin: auto">
+  <p align="center"><a href="mailto:infos@ingredients.quebec">Contact</a> | <a href="{{ url_for('apropos') }}"><a href="{{ url_for('apropos') }}">À propos d'ingrédients.quebec</a></a> | <a href="https://github.com/ingredientsquebec/ingredients.quebec" target="_blank">Code source</a></p>
+</div>
+
+
+{% endblock %}
